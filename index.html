@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sucos Naturaly - Assinatura de Suco de Laranja Puro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #4A7C59;
+            --dark-green: #26402E;
+            --accent-orange: #F58220;
+            --light-bg: #FCFBF8;
+            --text-dark: #312F2D;
+            --text-light: #FFFFFF;
+            --border-color: #EAE6E1;
+            --shadow-soft: 0 4px 15px rgba(0,0,0,0.05);
+            --shadow-medium: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--light-bg);
+            overflow-x: hidden;
+        }
+        
+        body.no-scroll {
+            overflow: hidden;
+        }
+        
+        /* Animation utility */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        header {
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            background-color: rgba(252, 251, 248, 0.9);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary-green);
+            text-decoration: none;
+            z-index: 1001;
+        }
+        
+        .logo span {
+            color: var(--accent-orange);
+        }
+
+        .desktop-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .desktop-nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .desktop-nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-orange);
+            transition: width 0.3s ease;
+        }
+        
+        .desktop-nav a:hover {
+            color: var(--accent-orange);
+        }
+        
+        .desktop-nav a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 2rem;
+            height: 2rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1001;
+        }
+
+        .hamburger-menu .hamburger-line {
+            width: 2rem;
+            height: 0.25rem;
+            background: var(--dark-green);
+            border-radius: 10px;
+            transition: all 0.3s linear;
+            position: relative;
+            transform-origin: 1px;
+        }
+        
+        .mobile-nav { display: none; }
+        
+        .hero {
+            padding: 6rem 0;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            background-image: linear-gradient(rgba(252, 251, 248, 0.8), rgba(252, 251, 248, 0.8)), url('https://s2-g1.glbimg.com/USZ4Y100GXKjzcUm5wW92kxCWxk=/0x0:3456x2304/600x0/smart/filters:gifv():strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2023/0/3/MVsQbdRneVJxhmmLZABw/laranja-sheraz-shaikh-zx3kcu2kw9e-unsplash.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--dark-green);
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .hero-image {
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 320px;
+            height: auto;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.2));
+            transition: transform 0.4s ease-in-out;
+        }
+        
+        .hero-image img:hover {
+            transform: scale(1.05) rotate(3deg);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-orange);
+            color: var(--text-light);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(245, 130, 32, 0.4);
+        }
+        
+        section { padding: 6rem 0; }
+        
+        #differentials, footer { background-color: var(--dark-green); color: var(--text-light); }
+        #differentials .section-title, #differentials .section-subtitle, #differentials p { color: var(--text-light); }
+        #preparation { background-color: #fff; }
+
+        .section-title { text-align: center; font-size: 2.8rem; font-weight: 900; margin-bottom: 1rem; color: var(--primary-green); }
+        .section-subtitle { text-align: center; font-size: 1.15rem; color: #777; margin-bottom: 5rem; max-width: 650px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+
+        .how-it-works-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2.5rem; text-align: center; }
+        .step { background: #fff; padding: 2.5rem 2rem; border-radius: 15px; box-shadow: var(--shadow-soft); transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid var(--border-color); }
+        .step:hover { transform: translateY(-8px); box-shadow: var(--shadow-medium); }
+        .step .icon { width: 70px; height: 70px; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; background-color: var(--light-bg); border-radius: 50%; color: var(--accent-orange); border: 1px solid var(--border-color); }
+        .step h3 { font-size: 1.3rem; margin-bottom: 0.5rem; font-weight: 700; color: var(--dark-green); }
+
+        .preparation-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; }
+        .prep-card { background-color: var(--light-bg); border: 1px solid var(--border-color); border-radius: 15px; padding: 2.5rem 2rem; text-align: center; box-shadow: var(--shadow-soft); border-top: 4px solid var(--primary-green); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .prep-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-medium); }
+        .prep-card .icon { color: var(--primary-green); margin-bottom: 1.5rem; }
+        .prep-card h3 { font-size: 1.5rem; color: var(--dark-green); margin-bottom: 1rem; }
+        .prep-card p { font-size: 1.1rem; line-height: 1.8; color: var(--text-dark); }
+        .prep-card strong { color: var(--dark-green); font-weight: 700; }
+
+        .differentials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; max-width: 900px; margin: 0 auto; }
+        .differential { text-align: center; }
+        .differential .icon { width: 70px; height: 70px; margin: 0 auto 1.5rem; color: var(--accent-orange); }
+        .differential p { line-height: 1.7; }
+        
+        #order-form-container { background-color: #fff; border-radius: 20px; padding: 3rem; box-shadow: var(--shadow-medium); border: 1px solid var(--border-color); }
+        .form-step h3 { font-size: 1.8rem; font-weight: 700; color: var(--dark-green); margin-bottom: 2rem; border-left: 4px solid var(--accent-orange); padding-left: 1rem; }
+        .plan-selection { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 3.5rem; }
+        .plan-card { background-color: var(--light-bg); border: 2px solid var(--border-color); border-radius: 15px; padding: 2rem; text-align: center; cursor: pointer; transition: all 0.3s ease; position: relative; }
+        .plan-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-soft); }
+        .plan-card input[type="radio"] { display: none; }
+        .plan-card.selected { border-color: var(--accent-orange); transform: translateY(-5px) scale(1.02); box-shadow: 0 10px 30px rgba(245, 130, 32, 0.2); }
+        .plan-details h4 { font-size: 1.5rem; color: var(--dark-green); font-weight: 900; margin-bottom: 0.5rem; }
+        .plan-details .price { font-size: 2.5rem; font-weight: 900; color: var(--primary-green); margin-bottom: 0.25rem; }
+        .plan-details .price small { font-size: 1rem; font-weight: 500; color: #777; }
+        .plan-details .description { font-size: 1rem; color: #555; margin-top: 1rem; }
+        
+        .delivery-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label { font-weight: 700; margin-bottom: 0.75rem; color: var(--dark-green); font-size: 1.1rem; }
+        .form-group input, .form-group select { padding: 1rem; border-radius: 10px; border: 2px solid var(--border-color); font-size: 1rem; font-family: 'Poppins', sans-serif; background-color: #fff; transition: border-color 0.3s ease, box-shadow 0.3s ease; color: var(--text-dark); }
+        .form-group select { -webkit-appearance: none; -moz-appearance: none; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%234A7C59' class='bi bi-chevron-down' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1em; padding-right: 2.5rem; }
+        .form-group input[type="number"]::-webkit-inner-spin-button, .form-group input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+        .form-group input[type="number"] { -moz-appearance: textfield; }
+        .form-group select:invalid { color: #777; }
+        .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--accent-orange); box-shadow: 0 0 0 4px rgba(245, 130, 32, 0.2); }
+        .submit-area { text-align: center; margin-top: 3rem; }
+        
+        #gallery .gallery-container { max-width: 900px; margin: 0 auto; }
+        #gallery .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background-color: #000; }
+        #gallery .video-wrapper video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        .carousel { position: relative; overflow: hidden; border-radius: 15px; box-shadow: var(--shadow-medium); }
+        .carousel-slides { display: flex; transition: transform 0.7s ease-in-out; }
+        .carousel-slide { min-width: 100%; position: relative; }
+        .carousel-slide img { width: 100%; display: block; object-fit: cover; aspect-ratio: 16/10; }
+        
+        .city-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; max-width: 800px; margin: 0 auto; }
+        .city-item { display: flex; align-items: center; gap: 0.75rem; background-color: var(--light-bg); padding: 1rem 1.5rem; border-radius: 50px; font-weight: 500; font-size: 1.1rem; color: var(--dark-green); border: 1px solid var(--border-color); box-shadow: var(--shadow-soft); }
+        .city-item svg { color: var(--primary-green); }
+
+        footer { padding: 5rem 0 2rem 0; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; align-items: start; text-align: left; }
+        .footer-about .footer-logo { font-size: 2rem; font-weight: 900; color: var(--text-light); margin-bottom: 1rem; }
+        .footer-about .footer-logo span { color: var(--accent-orange); }
+        .footer-about p { opacity: 0.8; margin-bottom: 1.5rem; line-height: 1.7; }
+        .social-icons { display: flex; gap: 1.5rem; }
+        .social-icons a { color: var(--text-light); text-decoration: none; transition: color 0.3s ease, transform 0.3s ease; }
+        .social-icons a:hover { color: var(--accent-orange); transform: translateY(-3px); }
+
+        .footer-column h4 { font-size: 1.2rem; margin-bottom: 1.5rem; color: #fff; }
+        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+        .footer-links a { color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease; }
+        .footer-links a:hover { color: var(--accent-orange); }
+        .copyright { text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); opacity: 0.7; font-size: 0.9rem; }
+
+        /* --- RESPONSIVE STYLES --- */
+        @media (max-width: 992px) {
+            .hero-content { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
+            .hero-text { order: 2; }
+            .hero-image { order: 1; }
+            .hero-text p { margin-left: auto; margin-right: auto; }
+            .hero-image img { max-width: 250px; }
+        }
+        @media (max-width: 768px) {
+            .desktop-nav { display: none; }
+            .hamburger-menu { display: flex; }
+            .mobile-nav { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2rem; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background-color: rgba(38, 64, 46, 0.98); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); transform: translateX(100%); transition: transform 0.3s ease-in-out; }
+            .mobile-nav.is-open { transform: translateX(0); }
+            .mobile-nav a { color: var(--text-light); text-decoration: none; font-size: 1.8rem; font-weight: 700; transition: color 0.3s ease; }
+            .mobile-nav a:hover { color: var(--accent-orange); }
+
+            .hamburger-menu.is-open .hamburger-line:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+            .hamburger-menu.is-open .hamburger-line:nth-child(2) { opacity: 0; }
+            .hamburger-menu.is-open .hamburger-line:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+            .hamburger-menu.is-open .hamburger-line { background: var(--text-light); }
+            
+            section { padding: 4rem 0; }
+            .hero { padding: 4rem 0; min-height: auto; }
+            .section-title { font-size: 2.2rem; }
+            .section-subtitle { margin-bottom: 3rem; }
+            
+            #order-form-container { padding: 2rem 1.5rem; }
+            .plan-selection { grid-template-columns: 1fr; }
+            .delivery-options { grid-template-columns: 1fr; }
+            .city-list { gap: 1rem; }
+            .city-item { font-size: 1rem; padding: 0.8rem 1.2rem; }
+            .footer-content { text-align: center; }
+            .footer-about, .footer-column { display: flex; flex-direction: column; align-items: center; }
+        }
+    </style>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <header>
+        <div class="nav-container container">
+            <a href="#" class="logo">Natur<span>ALY</span></a>
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="#how-it-works">Como Funciona</a></li>
+                    <li><a href="#delivery-area">Entregas</a></li>
+                    <li><a href="#order">Planos</a></li>
+                    <li><a href="#gallery">Galeria</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger-menu" aria-label="Abrir menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+        <nav class="mobile-nav">
+             <a href="#how-it-works">Como Funciona</a>
+             <a href="#delivery-area">Entregas</a>
+             <a href="#order">Planos</a>
+             <a href="#gallery">Galeria</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-content">
+                <div class="hero-text fade-in-section">
+                    <h1>Sabor que vem da Natureza</h1>
+                    <p>Natural, sem conservantes e sem adição de açúcar. A pura energia da fruta, entregue na sua casa.</p>
+                     <a href="#order" class="btn">ESCOLHA SEU PLANO</a>
+                </div>
+                <div class="hero-image fade-in-section">
+                    <img src="https://i.imgur.com/uRcoes7.png" alt="Garrafa de Suco de Laranja Naturaly">
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works">
+            <div class="container fade-in-section">
+                <h2 class="section-title">COMO FUNCIONA</h2>
+                <p class="section-subtitle">Receber seu suco Naturaly é simples e rápido. Em poucos passos você garante saúde e praticidade para sua rotina.</p>
+                <div class="how-it-works-grid">
+                    <div class="step">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-package"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                        </div>
+                        <h3>ESCOLHA SEU PLANO</h3>
+                        <p>A quantidade ideal de suco para sua rotina mensal.</p>
+                    </div>
+                    <div class="step">
+                        <div class="icon">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                        </div>
+                        <h3>AGENDE O MELHOR DIA</h3>
+                        <p>Escolha o dia do mês que prefere receber seus sucos.</p>
+                    </div>
+                    <div class="step">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-truck"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                        </div>
+                        <h3>RECEBA EM CASA</h3>
+                        <p>Nosso suco chega até você, de um jeito prático e seguro.</p>
+                    </div>
+                    <div class="step">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-snowflake"><line x1="2" y1="12" x2="22" y2="12"></line><line x1="12" y1="2" x2="12" y2="22"></line><path d="M20 16l-4-4 4-4"></path><path d="M4 8l4 4-4 4"></path><path d="M16 4l-4 4-4-4"></path><path d="M8 20l4-4 4 4"></path></svg>
+                        </div>
+                        <h3>APROVEITE O BEM-ESTAR</h3>
+                        <p>Basta descongelar e aproveitar todos os benefícios.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="preparation">
+            <div class="container fade-in-section">
+                <h2 class="section-title">CUIDADO QUE PRESERVA O SABOR</h2>
+                 <p class="section-subtitle">Para garantir a melhor experiência, seu suco Naturaly chega congelado. Siga os passos simples para aproveitar todo o frescor.</p>
+                <div class="preparation-grid">
+                   <div class="prep-card">
+                       <div class="icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-archive"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>
+                       </div>
+                       <h3>Como descongelar?</h3>
+                       <p>
+                           Transfira a garrafa do congelador para a <strong>geladeira</strong> e aguarde cerca de 24 horas. Após esse tempo, seu suco estará perfeito para consumo.
+                       </p>
+                   </div>
+                   <div class="prep-card">
+                       <div class="icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                       </div>
+                       <h3>Qual a validade?</h3>
+                       <p>
+                           O produto congelado é válido por <strong>90 dias</strong>. Após descongelado, deve ser mantido na geladeira e consumido em até <strong>5 dias</strong>.
+                       </p>
+                   </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="differentials" class="differentials">
+            <div class="container fade-in-section">
+                <h2 class="section-title">NOSSOS DIFERENCIAIS</h2>
+                <p class="section-subtitle">Qualidade é a nossa prioridade. Veja o que torna nosso suco especial.</p>
+                <div class="differentials-grid">
+                    <div class="differential">
+                         <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></div>
+                         <h3>Laranjas Frescas</h3>
+                         <p>Feito com laranjas frescas e selecionadas, para garantir o máximo de sabor e nutrientes.</p>
+                    </div>
+                    <div class="differential">
+                        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield-off"><path d="M19.69 14a6.9 6.9 0 0 0 .31-2V5l-8-3-3.16 1.18"></path><path d="M4.73 4.73L4 5v7c0 6 8 10 8 10a20.29 20.29 0 0 0 5.62-4.38"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg></div>
+                        <h3>100% Natural</h3>
+                        <p>Sem adição de açúcares, conservantes, corantes ou qualquer aditivo químico.</p>
+                    </div>
+                    <div class="differential">
+                        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-thermometer"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path></svg></div>
+                        <h3>Congelamento Rápido</h3>
+                        <p>O sabor e os nutrientes da fruta são preservados pelo processo de congelamento.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="delivery-area">
+            <div class="container fade-in-section">
+                <h2 class="section-title">ÁREA DE ENTREGA</h2>
+                <p class="section-subtitle">Verifique se atendemos a sua cidade. Estamos expandindo constantemente!</p>
+                <div class="city-list">
+                    <div class="city-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <span>Uberaba</span>
+                    </div>
+                    <div class="city-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <span>Uberlândia</span>
+                    </div>
+                    <div class="city-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <span>Nova Ponte</span>
+                    </div>
+                    <div class="city-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <span>Patos de Minas</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="order" class="order">
+            <div class="container fade-in-section">
+                <h2 class="section-title">ESCOLHA SEU PLANO MENSAL</h2>
+                <p class="section-subtitle">Receba seus sucos com praticidade. Selecione um plano, escolha o melhor dia para sua entrega e finalize seu pedido no WhatsApp.</p>
+                
+                <form id="order-form">
+                    <div id="order-form-container">
+                        <div class="form-step">
+                            <h3>Passo 1: Selecione seu plano</h3>
+                            <div class="plan-selection">
+                                <label class="plan-card">
+                                    <input type="radio" name="plan" value="Suco Unitário" data-price="R$ 7,00">
+                                    <div class="plan-details">
+                                        <h4>UNITÁRIO</h4>
+                                        <div class="price">R$ 7<small>,00</small></div>
+                                        <p class="description">Perfeito para experimentar ou para um consumo casual.</p>
+                                    </div>
+                                </label>
+                                <label class="plan-card">
+                                    <input type="radio" name="plan" value="Combo 8 Sucos" data-price="R$ 56,00">
+                                    <div class="plan-details">
+                                        <h4>COMBO 8</h4>
+                                        <div class="price">R$ 56<small>,00/mês</small></div>
+                                        <p class="description">Ideal para um consumo individual e rotina leve.</p>
+                                    </div>
+                                </label>
+                                <label class="plan-card">
+                                    <input type="radio" name="plan" value="Combo 12 Sucos" data-price="R$ 80,00">
+                                    <div class="plan-details">
+                                        <h4>COMBO 12</h4>
+                                        <div class="price">R$ 80<small>,00/mês</small></div>
+                                        <p class="description">Perfeito para casais ou para quem ama suco todo dia.</p>
+                                    </div>
+                                </label>
+                                <label class="plan-card">
+                                    <input type="radio" name="plan" value="Combo 16 Sucos" data-price="R$ 100,00">
+                                    <div class="plan-details">
+                                        <h4>COMBO 16</h4>
+                                        <div class="price">R$ 100<small>,00/mês</small></div>
+                                        <p class="description">O melhor custo-benefício para a família toda.</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    
+                        <div class="form-step">
+                            <h3>Passo 2: Agende a entrega</h3>
+                            <div class="delivery-options">
+                                <div class="form-group">
+                                    <label for="delivery-day">Dia da Entrega</label>
+                                     <input type="number" id="delivery-day" name="delivery-day" min="1" max="31" placeholder="Dia do mês (1-31)" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="city">Cidade</label>
+                                    <select id="city" name="city" required>
+                                        <option value="" disabled selected>Selecione sua cidade</option>
+                                        <option value="Uberaba">Uberaba</option>
+                                        <option value="Uberlândia">Uberlândia</option>
+                                        <option value="Nova Ponte">Nova Ponte</option>
+                                        <option value="Patos de Minas">Patos de Minas</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="submit-area">
+                         <button type="submit" class="btn btn-large">MONTAR PEDIDO NO WHATSAPP</button>
+                    </div>
+                </form>
+
+            </div>
+        </section>
+
+        <section id="gallery">
+            <div class="container fade-in-section">
+                <h2 class="section-title">NOSSA PRODUÇÃO</h2>
+                <p class="section-subtitle">Um pouco do nosso cuidado, da colheita ao seu copo.</p>
+                <div class="gallery-container">
+                    <div class="carousel">
+                        <div class="carousel-slides">
+                            <div class="carousel-slide">
+                                <div class="video-wrapper">
+                                    <video controls poster="https://mkdocs-201908.s3.sa-east-1.amazonaws.com/1624/production/10fd1bf5bce9c68350d2261eda0d1a73_1624/production/ImagemdoWhatsAppde2025-10-02s10_1759420929153.37">
+                                        <source src="https://mkdocs-201908.s3.sa-east-1.amazonaws.com/1624/production/c3aeccc6cd9635d35bd9d18e6ff3fba6_1624/production/VdeodoWhatsAppde2025-10-02s10_1759420949239.37" type="video/mp4">
+                                        Seu navegador não suporta o elemento de vídeo.
+                                    </video>
+                                </div>
+                            </div>
+                             <div class="carousel-slide">
+                                <img src="https://mkdocs-201908.s3.sa-east-1.amazonaws.com/1624/production/cb51c9c0e6fd3b13454c432df1dab34f_1624/production/ImagemdoWhatsAppde2025-10-02s10_1759420852763.37" alt="Garrafas de suco Naturaly prontas">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://mkdocs-201908.s3.sa-east-1.amazonaws.com/1624/production/7ae7b1a02ac5e8724f7b0fa3d0353dc3_1624/production/ImagemdoWhatsAppde2025-10-02s10_1759420878393.37" alt="Suco Naturaly sendo preparado">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-about">
+                <div class="footer-logo">Natur<span>ALY</span></div>
+                <p>Sabor que vem da natureza, entregue com praticidade na sua casa. 100% fruta, 100% saúde.</p>
+                <div class="social-icons">
+                    <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.37 21.82 12.04 21.82C17.5 21.82 21.95 17.37 21.95 11.91C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM17.46 15.57C17.31 15.96 16.48 16.39 16.1 16.45C15.72 16.5 15.21 16.53 14.83 16.39C14.44 16.25 13.57 15.92 12.56 15.02C11.31 13.89 10.53 12.54 10.39 12.3C10.24 12.06 10.12 11.88 9.91 11.61C9.71 11.33 9.53 11.1 9.34 10.84C9.16 10.58 9.06 10.37 8.97 10.16C8.87 9.95 8.73 9.61 8.87 9.26C9 8.91 9.16 8.65 9.36 8.45C9.56 8.25 9.78 8.16 10.04 8.16C10.29 8.16 10.5 8.16 10.65 8.18C10.8 8.2 10.95 8.2 11.12 8.5C11.3 8.8 11.64 9.59 11.7 9.71C11.76 9.83 11.81 9.99 11.7 10.16C11.59 10.33 11.5 10.43 11.38 10.57C11.27 10.71 11.16 10.81 11.05 10.93C10.94 11.05 10.81 11.19 10.97 11.48C11.13 11.77 11.59 12.47 12.21 13.04C12.99 13.78 13.63 14.07 13.88 14.22C14.13 14.36 14.28 14.33 14.43 14.18C14.58 14.03 14.95 13.59 15.17 13.32C15.39 13.05 15.65 12.99 15.9 13.08C16.15 13.18 16.89 13.51 17.08 13.6C17.27 13.7 17.41 13.75 17.46 13.83C17.51 13.91 17.51 14.25 17.46 15.57Z"></path></svg>
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"></path></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Navegação</h4>
+                 <ul class="footer-links">
+                    <li><a href="#how-it-works">Como Funciona</a></li>
+                    <li><a href="#delivery-area">Entregas</a></li>
+                    <li><a href="#order">Planos</a></li>
+                    <li><a href="#gallery">Galeria</a></li>
+                </ul>
+            </div>
+             <div class="footer-column">
+                <h4>Legal</h4>
+                 <ul class="footer-links">
+                    <li><a href="#">Dúvidas Frequentes</a></li>
+                    <li><a href="#">Política de Privacidade</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container">
+            <p class="copyright">&copy; 2024 Sucos Naturaly. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const orderForm = document.getElementById('order-form');
+            const planCards = document.querySelectorAll('.plan-card');
+            const hamburger = document.querySelector('.hamburger-menu');
+            const mobileNav = document.querySelector('.mobile-nav');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+            const body = document.body;
+
+            // --- Mobile Menu Logic ---
+            const closeMenu = () => {
+                hamburger.setAttribute('aria-expanded', 'false');
+                hamburger.classList.remove('is-open');
+                mobileNav.classList.remove('is-open');
+                body.classList.remove('no-scroll');
+            };
+
+            hamburger.addEventListener('click', () => {
+                const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+                hamburger.setAttribute('aria-expanded', !isExpanded);
+                hamburger.classList.toggle('is-open');
+                mobileNav.classList.toggle('is-open');
+                body.classList.toggle('no-scroll');
+            });
+
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault(); 
+                    const targetId = link.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    closeMenu();
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // --- Form Logic ---
+            planCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    planCards.forEach(c => c.classList.remove('selected'));
+                    card.classList.add('selected');
+                });
+            });
+
+            orderForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const selectedPlanInput = document.querySelector('input[name="plan"]:checked');
+                const deliveryDay = document.getElementById('delivery-day').value;
+                const city = document.getElementById('city').value;
+
+                if (!selectedPlanInput) {
+                    alert('Por favor, selecione um plano.');
+                    return;
+                }
+                if (!deliveryDay) {
+                    alert('Por favor, informe o dia para a entrega.');
+                    return;
+                }
+                if (!city) {
+                    alert('Por favor, selecione a sua cidade.');
+                    return;
+                }
+
+                const planName = selectedPlanInput.value;
+                const planPrice = selectedPlanInput.getAttribute('data-price');
+                let message;
+
+                if (planName.includes('Combo')) {
+                     message = `Olá! Gostaria de fazer a assinatura mensal do *${planName}* (${planPrice}).\n\n- *Dia para entrega*: ${deliveryDay}\n- *Cidade*: ${city}\n\nAguardo o contato para finalizar o pedido. Obrigado!`;
+                } else {
+                     message = `Olá! Gostaria de pedir o *${planName}* (${planPrice}).\n\n- *Dia para entrega*: ${deliveryDay}\n- *Cidade*: ${city}\n\nAguardo o contato para finalizar o pedido. Obrigado!`;
+                }
+
+                const phoneNumber = '5511999999999';
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+            });
+            
+            // --- Carousel Logic ---
+            const carouselSlides = document.querySelector('.carousel-slides');
+            if (carouselSlides) {
+                const slides = carouselSlides.querySelectorAll('.carousel-slide');
+                if (slides.length > 0) {
+                    let currentIndex = 0;
+                    const slideCount = slides.length;
+                    let carouselInterval;
+
+                    function goToSlide(index) {
+                        currentIndex = (index + slideCount) % slideCount;
+                        carouselSlides.style.transform = `translateX(-${currentIndex * 100}%)`;
+                        scheduleNextSlide();
+                    }
+
+                    function scheduleNextSlide() {
+                        clearTimeout(carouselInterval);
+                        const isVideoSlide = slides[currentIndex].querySelector('video') !== null;
+                        const delay = isVideoSlide ? 12000 : 4000;
+                        
+                        carouselInterval = setTimeout(() => {
+                            goToSlide(currentIndex + 1);
+                        }, delay);
+                    }
+                    
+                    scheduleNextSlide();
+                }
+            }
+
+            // --- Scroll Animation Logic ---
+            const sections = document.querySelectorAll('.fade-in-section');
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                rootMargin: '0px',
+                threshold: 0.1
+            });
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
