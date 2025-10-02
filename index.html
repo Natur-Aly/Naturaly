@@ -328,7 +328,6 @@
             .footer-about, .footer-column { display: flex; flex-direction: column; align-items: center; }
         }
     </style>
-<link rel="stylesheet" href="/index.css">
 </head>
 <body>
     <header>
@@ -363,9 +362,6 @@
                     <h1>Sabor que vem da Natureza</h1>
                     <p>Natural, sem conservantes e sem adição de açúcar. A pura energia da fruta, entregue na sua casa.</p>
                      <a href="#order" class="btn">ESCOLHA SEU PLANO</a>
-                </div>
-                <div class="hero-image fade-in-section">
-                    <img src="https://i.imgur.com/uRcoes7.png" alt="Garrafa de Suco de Laranja Naturaly">
                 </div>
             </div>
         </section>
@@ -592,10 +588,10 @@
                 <div class="footer-logo">Natur<span>ALY</span></div>
                 <p>Sabor que vem da natureza, entregue com praticidade na sua casa. 100% fruta, 100% saúde.</p>
                 <div class="social-icons">
-                    <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                    <a href="https://wa.me/553497742420" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
                          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.37 21.82 12.04 21.82C17.5 21.82 21.95 17.37 21.95 11.91C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM17.46 15.57C17.31 15.96 16.48 16.39 16.1 16.45C15.72 16.5 15.21 16.53 14.83 16.39C14.44 16.25 13.57 15.92 12.56 15.02C11.31 13.89 10.53 12.54 10.39 12.3C10.24 12.06 10.12 11.88 9.91 11.61C9.71 11.33 9.53 11.1 9.34 10.84C9.16 10.58 9.06 10.37 8.97 10.16C8.87 9.95 8.73 9.61 8.87 9.26C9 8.91 9.16 8.65 9.36 8.45C9.56 8.25 9.78 8.16 10.04 8.16C10.29 8.16 10.5 8.16 10.65 8.18C10.8 8.2 10.95 8.2 11.12 8.5C11.3 8.8 11.64 9.59 11.7 9.71C11.76 9.83 11.81 9.99 11.7 10.16C11.59 10.33 11.5 10.43 11.38 10.57C11.27 10.71 11.16 10.81 11.05 10.93C10.94 11.05 10.81 11.19 10.97 11.48C11.13 11.77 11.59 12.47 12.21 13.04C12.99 13.78 13.63 14.07 13.88 14.22C14.13 14.36 14.28 14.33 14.43 14.18C14.58 14.03 14.95 13.59 15.17 13.32C15.39 13.05 15.65 12.99 15.9 13.08C16.15 13.18 16.89 13.51 17.08 13.6C17.27 13.7 17.41 13.75 17.46 13.83C17.51 13.91 17.51 14.25 17.46 15.57Z"></path></svg>
                     </a>
-                    <a href="#" aria-label="Instagram">
+                    <a href="https://www.instagram.com/alyxandrecxta/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"></path></svg>
                     </a>
                 </div>
@@ -702,7 +698,7 @@
                      message = `Olá! Gostaria de pedir o *${planName}* (${planPrice}).\n\n- *Dia para entrega*: ${deliveryDay}\n- *Cidade*: ${city}\n\nAguardo o contato para finalizar o pedido. Obrigado!`;
                 }
 
-                const phoneNumber = '5511999999999';
+                const phoneNumber = '553497742420';
                 const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
                 window.open(whatsappUrl, '_blank');
             });
@@ -725,7 +721,7 @@
                     function scheduleNextSlide() {
                         clearTimeout(carouselInterval);
                         const isVideoSlide = slides[currentIndex].querySelector('video') !== null;
-                        const delay = isVideoSlide ? 12000 : 4000;
+                        const delay = isVideoSlide ? 20000 : 4000;
                         
                         carouselInterval = setTimeout(() => {
                             goToSlide(currentIndex + 1);
@@ -754,6 +750,5 @@
             });
         });
     </script>
-<script type="module" src="/index.tsx"></script>
 </body>
 </html>
