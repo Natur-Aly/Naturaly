@@ -271,6 +271,7 @@
         
         .delivery-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
         .form-group { display: flex; flex-direction: column; }
+        .form-group.full-width { grid-column: 1 / -1; }
         .form-group label { font-weight: 700; margin-bottom: 0.75rem; color: var(--dark-green); font-size: 1.1rem; }
         .form-group input, .form-group select { padding: 1rem; border-radius: 10px; border: 2px solid var(--border-color); font-size: 1rem; font-family: 'Poppins', sans-serif; background-color: #fff; transition: var(--transition-smooth); color: var(--text-dark); }
         .form-group select { -webkit-appearance: none; -moz-appearance: none; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%234A7C59' class='bi bi-chevron-down' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1em; padding-right: 2.5rem; }
@@ -411,7 +412,7 @@
             color: #777;
             margin-bottom: 0.25rem;
         }
-        #modal-plan-name, #modal-delivery-info {
+        #modal-plan-name, #modal-delivery-info, #modal-delivery-address {
             font-size: 1.1rem;
             color: var(--dark-green);
             font-weight: 700;
@@ -718,6 +719,10 @@
                                 <label for="day-select">Dia do Mês para Entrega</label>
                                 <input type="number" id="day-select" placeholder="Escolha um dia (1 a 31)" min="1" max="31" required>
                             </div>
+                            <div class="form-group full-width">
+                                <label for="address-input">Endereço Completo (Rua, Nº, Bairro)</label>
+                                <input type="text" id="address-input" placeholder="Ex: Rua das Flores, 123, Centro" required>
+                            </div>
                         </div>
                     </div>
                     <div class="confirm-button-container">
@@ -766,7 +771,7 @@
                 <div class="footer-logo">Natur<span>ALY</span></div>
                 <p>Sabor que vem da natureza, entregue com praticidade na sua casa. 100% fruta, 100% saúde.</p>
                 <div class="social-icons">
-                    <a href="https://wa.me/553497742420" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                    <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
                          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.37 21.82 12.04 21.82C17.5 21.82 21.95 17.37 21.95 11.91C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM17.46 15.57C17.31 15.96 16.48 16.39 16.1 16.45C15.72 16.5 15.21 16.53 14.83 16.39C14.44 16.25 13.57 15.92 12.56 15.02C11.31 13.89 10.53 12.54 10.39 12.3C10.24 12.06 10.12 11.88 9.91 11.61C9.71 11.33 9.53 11.1 9.34 10.84C9.16 10.58 9.06 10.37 8.97 10.16C8.87 9.95 8.73 9.61 8.87 9.26C9 8.91 9.16 8.65 9.36 8.45C9.56 8.25 9.78 8.16 10.04 8.16C10.29 8.16 10.5 8.16 10.65 8.18C10.8 8.2 10.95 8.2 11.12 8.5C11.3 8.8 11.64 9.59 11.7 9.71C11.76 9.83 11.81 9.99 11.7 10.16C11.59 10.33 11.5 10.43 11.38 10.57C11.27 10.71 11.16 10.81 11.05 10.93C10.94 11.05 10.81 11.19 10.97 11.48C11.13 11.77 11.59 12.47 12.21 13.04C12.99 13.78 13.63 14.07 13.88 14.22C14.13 14.36 14.28 14.33 14.43 14.18C14.58 14.03 14.95 13.59 15.17 13.32C15.39 13.05 15.65 12.99 15.9 13.08C16.15 13.18 16.89 13.51 17.08 13.6C17.27 13.7 17.41 13.75 17.46 13.83C17.51 13.91 17.51 14.25 17.46 15.57Z"></path></svg>
                     </a>
                     <a href="#" aria-label="Instagram">
@@ -818,6 +823,10 @@
                     <div class="modal-delivery-details">
                         <span class="modal-summary-label">Entrega</span>
                         <strong id="modal-delivery-info"></strong>
+                    </div>
+                    <div class="modal-delivery-details" style="border-top: 1px solid var(--border-color);">
+                        <span class="modal-summary-label">Endereço</span>
+                        <strong id="modal-delivery-address"></strong>
                     </div>
                 </div>
                 <p class="modal-instructions">Para confirmar, clique abaixo para ir ao site de pagamento seguro.</p>
@@ -894,23 +903,26 @@
                 const modalWhatsappBtn = document.getElementById('modal-whatsapp-btn');
                 const modalPaymentBtn = document.getElementById('modal-payment-btn');
                 const modalDeliveryInfo = document.getElementById('modal-delivery-info');
+                const modalDeliveryAddress = document.getElementById('modal-delivery-address');
                 
                 const modalInitialState = document.getElementById('modal-initial-state');
                 const modalFinalState = document.getElementById('modal-final-state');
 
                 const citySelect = document.getElementById('city-select');
                 const daySelect = document.getElementById('day-select');
+                const addressInput = document.getElementById('address-input');
                 const confirmOrderBtn = document.getElementById('confirm-order-btn');
                 
                 const waLink = document.querySelector('.social-icons a[href*="wa.me"]');
-                const phoneNumber = waLink ? new URL(waLink.href).pathname.replace('/', '') : '553497742420';
+                const phoneNumber = waLink ? new URL(waLink.href).pathname.replace('/', '') : '5511999999999';
 
-                function openModal(planName, planPriceHTML, deliveryInfo) {
+                function openModal(planName, planPriceHTML, deliveryInfo, deliveryAddress) {
                     modalPlanName.textContent = planName;
                     modalPlanPrice.innerHTML = planPriceHTML;
                     modalDeliveryInfo.textContent = deliveryInfo;
+                    modalDeliveryAddress.textContent = deliveryAddress;
 
-                    const message = encodeURIComponent(`Olá! Gostaria de confirmar o pagamento do plano ${planName}, com entrega para ${deliveryInfo}. Segue o comprovante.`);
+                    const message = encodeURIComponent(`Olá! Gostaria de confirmar o pagamento do plano ${planName}, com entrega para ${deliveryInfo} no endereço: ${deliveryAddress}. Segue o comprovante.`);
                     modalWhatsappBtn.href = `https://wa.me/${phoneNumber}?text=${message}`;
                     
                     if (modalInitialState && modalFinalState) {
@@ -932,8 +944,9 @@
                     const citySelected = citySelect.value;
                     const daySelected = daySelect.value;
                     const dayValue = parseInt(daySelect.value, 10);
+                    const addressValue = addressInput.value.trim();
 
-                    confirmOrderBtn.disabled = !(selectedPlan && citySelected && daySelected && !isNaN(dayValue) && dayValue >= 1 && dayValue <= 31);
+                    confirmOrderBtn.disabled = !(selectedPlan && citySelected && daySelected && !isNaN(dayValue) && dayValue >= 1 && dayValue <= 31 && addressValue);
                 }
 
                 function validateDeliveryOptions() {
@@ -952,6 +965,12 @@
                         daySelect.classList.add('is-invalid');
                     }
                     
+                    addressInput.classList.remove('is-invalid');
+                    if (!addressInput.value.trim()) {
+                        isValid = false;
+                        addressInput.classList.add('is-invalid');
+                    }
+
                     return isValid;
                 }
 
@@ -966,6 +985,7 @@
                 
                 citySelect.addEventListener('change', checkFormCompletion);
                 daySelect.addEventListener('input', checkFormCompletion);
+                addressInput.addEventListener('input', checkFormCompletion);
 
                 if (modalPaymentBtn) {
                     modalPaymentBtn.addEventListener('click', () => {
@@ -985,6 +1005,7 @@
                         const priceHTML = selectedCard.querySelector('.price').innerHTML.trim();
                         const city = citySelect.options[citySelect.selectedIndex].text;
                         const day = daySelect.value;
+                        const address = addressInput.value.trim();
                         const deliveryInfo = `Dia ${day} em ${city}`;
                         
                         const paymentLink = selectedCard.dataset.paymentLink;
@@ -995,7 +1016,7 @@
                             console.error("Link de pagamento não encontrado para este plano.");
                         }
 
-                        openModal(name, priceHTML, deliveryInfo);
+                        openModal(name, priceHTML, deliveryInfo, address);
                     } else {
                          const deliverySection = document.querySelector('.delivery-options');
                         if (deliverySection) {
@@ -1004,6 +1025,7 @@
                         setTimeout(() => {
                            if (!citySelect.value) citySelect.classList.remove('is-invalid');
                            if (!daySelect.value) daySelect.classList.remove('is-invalid');
+                           if (!addressInput.value) addressInput.classList.remove('is-invalid');
                         }, 2500);
                     }
                 });
