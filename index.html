@@ -245,7 +245,22 @@
         
         #order-form-container { background-color: #fff; border-radius: 20px; padding: 3rem; box-shadow: var(--shadow-medium); border: 1px solid var(--border-color); }
         .form-step h3 { font-size: 1.8rem; font-weight: 700; color: var(--dark-green); margin-bottom: 2rem; border-left: 4px solid var(--accent-orange); padding-left: 1rem; }
-        .plan-selection { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 3.5rem; }
+        .plan-group-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--primary-green);
+            text-align: center;
+            margin: 3.5rem 0 1.5rem 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        h3 + .plan-container .plan-group-title:first-child {
+            margin-top: 0;
+        }
+        .plan-container {
+            margin-bottom: 3.5rem;
+        }
+        .plan-selection { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
         .plan-card { background-color: var(--light-bg); border: 2px solid var(--border-color); border-radius: 15px; padding: 2rem; text-align: center; cursor: pointer; transition: all 0.3s ease; position: relative; }
         .plan-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-soft); }
         .plan-card input[type="radio"] { display: none; }
@@ -481,46 +496,61 @@
         
         <section id="order" class="order">
             <div class="container fade-in-section">
-                <h2 class="section-title">ESCOLHA SEU PLANO MENSAL</h2>
-                <p class="section-subtitle">Receba seus sucos com praticidade. Selecione um plano, escolha o melhor dia para sua entrega e finalize seu pedido no WhatsApp.</p>
+                <h2 class="section-title">PEÇA O SEU NATURALY</h2>
+                <p class="section-subtitle">Seja para uma compra única ou uma assinatura mensal, receba seus sucos com praticidade. Escolha uma opção, agende sua entrega e finalize o pedido no WhatsApp.</p>
                 
                 <form id="order-form">
                     <div id="order-form-container">
                         <div class="form-step">
                             <h3>Passo 1: Selecione seu plano</h3>
-                            <div class="plan-selection">
-                                <label class="plan-card">
-                                    <input type="radio" name="plan" value="Suco Unitário" data-price="R$ 7,00">
-                                    <div class="plan-details">
-                                        <h4>UNITÁRIO</h4>
-                                        <div class="price">R$ 7<small>,00</small></div>
-                                        <p class="description">Perfeito para experimentar ou para um consumo casual.</p>
-                                    </div>
-                                </label>
-                                <label class="plan-card">
-                                    <input type="radio" name="plan" value="Combo 8 Sucos" data-price="R$ 56,00">
-                                    <div class="plan-details">
-                                        <h4>COMBO 8</h4>
-                                        <div class="price">R$ 56<small>,00/mês</small></div>
-                                        <p class="description">Ideal para um consumo individual e rotina leve.</p>
-                                    </div>
-                                </label>
-                                <label class="plan-card">
-                                    <input type="radio" name="plan" value="Combo 12 Sucos" data-price="R$ 80,00">
-                                    <div class="plan-details">
-                                        <h4>COMBO 12</h4>
-                                        <div class="price">R$ 80<small>,00/mês</small></div>
-                                        <p class="description">Perfeito para casais ou para quem ama suco todo dia.</p>
-                                    </div>
-                                </label>
-                                <label class="plan-card">
-                                    <input type="radio" name="plan" value="Combo 16 Sucos" data-price="R$ 100,00">
-                                    <div class="plan-details">
-                                        <h4>COMBO 16</h4>
-                                        <div class="price">R$ 100<small>,00/mês</small></div>
-                                        <p class="description">O melhor custo-benefício para a família toda.</p>
-                                    </div>
-                                </label>
+                            <div class="plan-container">
+                                <h4 class="plan-group-title">COMPRA AVULSA</h4>
+                                <div class="plan-selection">
+                                    <label class="plan-card">
+                                        <input type="radio" name="plan" value="1 Suco Avulso" data-price="R$ 7,00">
+                                        <div class="plan-details">
+                                            <h4>1 SUCO</h4>
+                                            <div class="price">R$ 7<small>,00</small></div>
+                                            <p class="description">Perfeito para experimentar ou para um consumo casual.</p>
+                                        </div>
+                                    </label>
+                                    <label class="plan-card">
+                                        <input type="radio" name="plan" value="Pacote 4 Sucos" data-price="R$ 24,00">
+                                        <div class="plan-details">
+                                            <h4>4 SUCOS</h4>
+                                            <div class="price">R$ 24<small>,00</small></div>
+                                            <p class="description">Pequeno estoque para a semana. (R$ 6,00/un)</p>
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <h4 class="plan-group-title">ASSINATURA MENSAL</h4>
+                                <div class="plan-selection">
+                                    <label class="plan-card">
+                                        <input type="radio" name="plan" value="Combo 8 Sucos" data-price="R$ 56,00">
+                                        <div class="plan-details">
+                                            <h4>COMBO 8</h4>
+                                            <div class="price">R$ 56<small>,00/mês</small></div>
+                                            <p class="description">Ideal para um consumo individual e rotina leve.</p>
+                                        </div>
+                                    </label>
+                                    <label class="plan-card">
+                                        <input type="radio" name="plan" value="Combo 12 Sucos" data-price="R$ 80,00">
+                                        <div class="plan-details">
+                                            <h4>COMBO 12</h4>
+                                            <div class="price">R$ 80<small>,00/mês</small></div>
+                                            <p class="description">Perfeito para casais ou para quem ama suco todo dia.</p>
+                                        </div>
+                                    </label>
+                                    <label class="plan-card">
+                                        <input type="radio" name="plan" value="Combo 16 Sucos" data-price="R$ 100,00">
+                                        <div class="plan-details">
+                                            <h4>COMBO 16</h4>
+                                            <div class="price">R$ 100<small>,00/mês</small></div>
+                                            <p class="description">O melhor custo-benefício para a família toda.</p>
+                                        </div>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     
@@ -588,10 +618,10 @@
                 <div class="footer-logo">Natur<span>ALY</span></div>
                 <p>Sabor que vem da natureza, entregue com praticidade na sua casa. 100% fruta, 100% saúde.</p>
                 <div class="social-icons">
-                    <a href="https://wa.me/553497742420" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                    <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
                          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.37 21.82 12.04 21.82C17.5 21.82 21.95 17.37 21.95 11.91C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM17.46 15.57C17.31 15.96 16.48 16.39 16.1 16.45C15.72 16.5 15.21 16.53 14.83 16.39C14.44 16.25 13.57 15.92 12.56 15.02C11.31 13.89 10.53 12.54 10.39 12.3C10.24 12.06 10.12 11.88 9.91 11.61C9.71 11.33 9.53 11.1 9.34 10.84C9.16 10.58 9.06 10.37 8.97 10.16C8.87 9.95 8.73 9.61 8.87 9.26C9 8.91 9.16 8.65 9.36 8.45C9.56 8.25 9.78 8.16 10.04 8.16C10.29 8.16 10.5 8.16 10.65 8.18C10.8 8.2 10.95 8.2 11.12 8.5C11.3 8.8 11.64 9.59 11.7 9.71C11.76 9.83 11.81 9.99 11.7 10.16C11.59 10.33 11.5 10.43 11.38 10.57C11.27 10.71 11.16 10.81 11.05 10.93C10.94 11.05 10.81 11.19 10.97 11.48C11.13 11.77 11.59 12.47 12.21 13.04C12.99 13.78 13.63 14.07 13.88 14.22C14.13 14.36 14.28 14.33 14.43 14.18C14.58 14.03 14.95 13.59 15.17 13.32C15.39 13.05 15.65 12.99 15.9 13.08C16.15 13.18 16.89 13.51 17.08 13.6C17.27 13.7 17.41 13.75 17.46 13.83C17.51 13.91 17.51 14.25 17.46 15.57Z"></path></svg>
                     </a>
-                    <a href="https://www.instagram.com/alyxandrecxta/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <a href="#" aria-label="Instagram">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"></path></svg>
                     </a>
                 </div>
@@ -614,7 +644,7 @@
             </div>
         </div>
         <div class="container">
-            <p class="copyright">&copy; 2025 Sucos Naturaly. Todos os direitos reservados.</p>
+            <p class="copyright">&copy; 2024 Sucos Naturaly. Todos os direitos reservados.</p>
         </div>
     </footer>
 
@@ -698,7 +728,7 @@
                      message = `Olá! Gostaria de pedir o *${planName}* (${planPrice}).\n\n- *Dia para entrega*: ${deliveryDay}\n- *Cidade*: ${city}\n\nAguardo o contato para finalizar o pedido. Obrigado!`;
                 }
 
-                const phoneNumber = '553497742420';
+                const phoneNumber = '5511999999999';
                 const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
                 window.open(whatsappUrl, '_blank');
             });
@@ -721,7 +751,7 @@
                     function scheduleNextSlide() {
                         clearTimeout(carouselInterval);
                         const isVideoSlide = slides[currentIndex].querySelector('video') !== null;
-                        const delay = isVideoSlide ? 20000 : 4000;
+                        const delay = isVideoSlide ? 12000 : 4000;
                         
                         carouselInterval = setTimeout(() => {
                             goToSlide(currentIndex + 1);
